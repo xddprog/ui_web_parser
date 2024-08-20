@@ -1,0 +1,19 @@
+* {
+    font-family: Montserrat,serif;
+}
+
+a {
+    text-decoration: none
+}
+
+button, select, input {
+    border-radius: 25px;
+}
+
+input:focus,
+select:focus, .form-control:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+
+}
