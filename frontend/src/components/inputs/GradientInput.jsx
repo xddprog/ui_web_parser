@@ -11,7 +11,7 @@ const Input = styled.input`
     );
     background-origin: border-box;
     box-shadow: inset 0 100vw white;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     height: 70px;
     width: 415px;
     font-size: 17px;
@@ -19,6 +19,11 @@ const Input = styled.input`
     margin-bottom: 30px;
 `
 
-export function GradientInput({placeholder, isRequired}) {
-    return <Input placeholder={placeholder} required={isRequired} />
+export function GradientInput({placeholder, isRequired, setInput}) {
+
+    function changeInput(event) {
+        setInput(event.target.value);
+    }
+
+    return <Input placeholder={placeholder} required={isRequired} onChange={changeInput} />
 }

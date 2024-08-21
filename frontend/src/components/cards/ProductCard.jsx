@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     }
     
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
     
     p:hover {
@@ -37,21 +37,35 @@ const Wrapper = styled.div`
     }
 `
 
-export default function ProductCard({name, oldPrice, price, bonus, url}) {
+const StyledParagraph = styled.p`
+    font-weight: 500;
+    display: inline;
+`
+
+export default function ProductCard({product}) {
     return (
         <Wrapper>
-            <Card href={url}>
+            <Card href={product.url}>
                 <p>
-                    Название товара: {name}
+                    Название товара: <StyledParagraph>{product.name}</StyledParagraph>
                 </p>
                 <p>
-                    Цена без скидки: {oldPrice}
+                    Цена без скидки:
+                    <StyledParagraph>
+                        {product.oldPrice ? ' ' + product.oldPrice : ' Не указана'}
+                    </StyledParagraph>
                 </p>
                 <p>
-                    Цена со скидкой: {price} ₽
+                    Цена со скидкой:
+                    <StyledParagraph>
+                        {' ' + product.price} ₽
+                    </StyledParagraph>
                 </p>
                 <p>
-                    Бонусы за покупку: {bonus}
+                    Бонусы за покупку:
+                    <StyledParagraph>
+                        {product.bonus ? ' ' + product.bonus: ' Нет бонуса'}
+                    </StyledParagraph>
                 </p>
             </Card>
         </Wrapper>

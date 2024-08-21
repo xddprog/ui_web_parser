@@ -16,9 +16,21 @@ const Button = styled.button`
     color: #fff;
     cursor: pointer;
     border: none;
-`
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
 
+    &:hover { 
+        //background: linear-gradient(
+        //    120deg,
+        //    rgba(95, 146, 250, 0.72), 
+        //    rgba(227, 65, 154, 0.72) 35%,
+        //    rgba(227, 65, 154, 0.72) 15%,
+        //    rgba(92, 82, 176, 0.72)
+        //);
+        opacity: 0.85;
+    }
+`;
 
-export default function GradientButton({text, onClick}) {
-    return <Button onClick={onClick}>{text}</Button>;
+export default function GradientButton({ text, onClick, type }) {
+    return <Button onClick={onClick} type={type}>{text}</Button>;
 }

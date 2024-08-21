@@ -11,7 +11,7 @@ const SelectCategory = styled.select`
     );
     background-origin: border-box;
     box-shadow: inset 0 100vw white;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     height: 70px;
     width: 415px;
     font-size: 16px;
@@ -25,8 +25,8 @@ export default function SelectParseCategory({handleCategory}) {
     return (
         <SelectCategory onChange={(event) => handleCategory(event.target.value)}>
             <option value="" disabled selected>Выберите категорию</option>
-            <option value="smartphone">Смартфоны</option>
-            <option value="laptop">Ноутбуки</option>
+            <option value="smartfony">Смартфоны</option>
+            <option value="noutbuki">Ноутбуки</option>
         </SelectCategory>
     )
 }

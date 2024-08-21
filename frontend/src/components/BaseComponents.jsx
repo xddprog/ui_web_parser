@@ -21,3 +21,15 @@ export const Title = styled.h1`
 export const Icon = styled.img`
     width: ${(props) => props.size};
 `
+
+export const Message = styled.div`
+    height: 60px;
+    width: 450px;
+    border-radius: 25px;
+    align-self: center;
+    background-color: ${(props) => props.color};
+    align-items: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+`

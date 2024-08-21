@@ -17,6 +17,8 @@ const ParserButton = styled.button`
     justify-content: center;
 `
 
-export function SelectParserButton({color, store}) {
-    return <Link to={`/main/parser/${store}`}><ParserButton color={color}>{store}</ParserButton></Link>
+export function SelectParserButton({color, storeLabel, storeValue}) {
+    return <Link to={`/main/parser/${storeValue}`}>
+        <ParserButton color={color}>{storeLabel}</ParserButton>
+    </Link>
 }
