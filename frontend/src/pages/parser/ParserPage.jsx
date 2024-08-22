@@ -37,13 +37,17 @@ export default function ParserPage() {
 
     async function parseStore(event) {
         event.preventDefault()
-        console.log(parsedProducts)
+
         if (await validateFields()) {
             return await parseStoreCategory(
                 store, category, maxPriceInput, minPriceInput
-            ).then(res => setParsedProducts(res));
+            ).then(res => setParsedProducts(
+                res.map(
+                    (item) => (<ProductCard key={item.id} product={item} />))
+                )
+            );
         }
-        console.log(parsedProducts)
+
         return null
     }
 
@@ -60,8 +64,7 @@ export default function ParserPage() {
                 </Container>
             </form>
             <div>
-                {parsedProducts.map((item) => (<ProductCard key={item.id} product={item} />))}
-                {<Pagination pageQuantity={10} />}
+                {parsedProducts.length > 0 ? <Pagination items={parsedProducts}/>: null}
             </div>
         </Container>
     )
