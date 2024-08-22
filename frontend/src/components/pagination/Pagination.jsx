@@ -40,7 +40,7 @@ const PaginationContainer = styled.div`
 function PaginationButton({number, isCurrent, setCurrentPage}) {
     return (
         <Button onClick={() => setCurrentPage(number)} isCurrent={isCurrent}>
-            {number}
+            {number + 1}
         </Button>
     )
 }
@@ -51,6 +51,7 @@ export function Pagination({items}) {
     const [left, setLeft] = useState(0)
     const [right, setRight] = useState(4)
 
+    console.log(currentPage, left, right)
 
     function handleNextButton() {
         setCurrentPage(currentPage + 1)
@@ -64,6 +65,12 @@ export function Pagination({items}) {
         setLeft(left - 4)
     }
 
+    function handlePaginationButton(number) {
+        setCurrentPage(number)
+        setLeft(number * 4)
+        setRight(number * 4 + 4)
+    }
+
     return (
         <Container>
             <div>
@@ -73,7 +80,7 @@ export function Pagination({items}) {
             <PaginationContainer>
                 <NextPrevButton
                     onClick={handlePrevButton}
-                    disabled={currentPage === 1}
+                    disabled={currentPage === 0}
                 >
                     <svg viewBox="64 64 896 896"
                          focusable="false"
@@ -96,16 +103,16 @@ export function Pagination({items}) {
                 {Array(Math.ceil(items.length / 4)).fill(0).map(
                     (_, index) => (
                         <PaginationButton
-                            number={index + 1}
-                            isCurrent={index + 1 === currentPage}
-                            setCurrentPage={setCurrentPage}
+                            number={index}
+                            isCurrent={index === currentPage}
+                            setCurrentPage={handlePaginationButton}
                         />
                     )
                 )}
 
                 <NextPrevButton
                     onClick={handleNextButton}
-                    disabled={currentPage === Math.ceil(items.length / 4)}
+                    disabled={currentPage === Math.ceil(items.length / 4) - 1}
                 >
                     <svg
                         viewBox="64 64 896 896"
