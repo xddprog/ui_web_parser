@@ -21,14 +21,11 @@ class YandexMarketParser(BaseParser):
     def get_item_price(self, item_info: Tag) -> int:
         item_price = item_info.find('div', class_='_1ArMm')
 
-        if item_price:
-            item_price = int(
-                normalize(
-                    'NFKD', item_price.get_text()
-                ).replace(' ', '')
-            )
-
-        return item_price
+        return int(
+            normalize(
+                'NFKD', item_price.get_text()
+            ).replace(' ', '')
+        )
 
     def get_item_bonus(self, item_info: Tag) -> None:
         return None

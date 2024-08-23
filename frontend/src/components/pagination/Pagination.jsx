@@ -37,9 +37,9 @@ const PaginationContainer = styled.div`
     margin-top: 30px;
 `
 
-function PaginationButton({number, isCurrent, setCurrentPage}) {
+function PaginationButton({number, isCurrent, handler}) {
     return (
-        <Button onClick={() => setCurrentPage(number)} isCurrent={isCurrent}>
+        <Button onClick={() => handler(number)} isCurrent={isCurrent}>
             {number + 1}
         </Button>
     )
@@ -50,8 +50,6 @@ export function Pagination({items}) {
     const [currentPage, setCurrentPage] = useState(1)
     const [left, setLeft] = useState(0)
     const [right, setRight] = useState(4)
-
-    console.log(currentPage, left, right)
 
     function handleNextButton() {
         setCurrentPage(currentPage + 1)
@@ -105,7 +103,7 @@ export function Pagination({items}) {
                         <PaginationButton
                             number={index}
                             isCurrent={index === currentPage}
-                            setCurrentPage={handlePaginationButton}
+                            handler={handlePaginationButton}
                         />
                     )
                 )}

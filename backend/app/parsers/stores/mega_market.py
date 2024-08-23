@@ -24,7 +24,7 @@ class MegaMarketParser(BaseParser):
         if item_price:
             item_price = int(normalize('NFKD', item_info.find(
                 'span'
-            ).get_text().replace(' ', ''))[:-1])
+            ).get_text()).replace(' ', ''))
 
         return item_price
 
@@ -44,7 +44,7 @@ class MegaMarketParser(BaseParser):
         if item_old_price:
             item_old_price = int(normalize('NFKD', item_info.find(
                 'span', class_='crossed-old-price-discount__price'
-            ).get_text().replace(' ', ''))[:-1])
+            ).get_text()).replace(' ', ''))
 
         return item_old_price
 

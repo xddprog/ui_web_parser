@@ -35,6 +35,7 @@ const Wrapper = styled.div`
     p:hover {
         transform: scale(1);
     }
+    color: black;
 `
 
 const StyledParagraph = styled.p`
@@ -42,32 +43,40 @@ const StyledParagraph = styled.p`
     display: inline;
 `
 
+const StyledA = styled.a`
+    text-decoration: none;
+    
+`
+
 export default function ProductCard({product}) {
     return (
-        <Wrapper>
-            <Card href={product.url}>
-                <p>
-                    Название товара: <StyledParagraph>{product.name}</StyledParagraph>
-                </p>
-                <p>
-                    Цена без скидки:
-                    <StyledParagraph>
-                        {product.oldPrice ? ' ' + product.oldPrice : ' Не указана'}
-                    </StyledParagraph>
-                </p>
-                <p>
-                    Цена со скидкой:
-                    <StyledParagraph>
-                        {' ' + product.price} ₽
-                    </StyledParagraph>
-                </p>
-                <p>
-                    Бонусы за покупку:
-                    <StyledParagraph>
-                        {product.bonus ? ' ' + product.bonus: ' Нет бонуса'}
-                    </StyledParagraph>
-                </p>
-            </Card>
-        </Wrapper>
+        <StyledA href={product.url} target="_blank" rel="noopener noreferrer">
+            <Wrapper>
+                <Card>
+                    <p>
+                        Название товара: <StyledParagraph>{product.name}</StyledParagraph>
+                    </p>
+                    <p>
+                        Цена без скидки:
+                        <StyledParagraph>
+                            {product.oldPrice ? ' ' + product.oldPrice : ' Не указана'}
+                        </StyledParagraph>
+                    </p>
+                    <p>
+                        Цена со скидкой:
+                        <StyledParagraph>
+                            {' ' + product.price} ₽
+                        </StyledParagraph>
+                    </p>
+                    <p>
+                        Бонусы за покупку:
+                        <StyledParagraph>
+                            {product.bonus ? ' ' + product.bonus: ' Нет бонуса'}
+                        </StyledParagraph>
+                    </p>
+                </Card>
+            </Wrapper>
+        </StyledA>
+
     )
 }

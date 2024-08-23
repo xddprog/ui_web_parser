@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.get("/parsers/{store_name}/{category}")
+@router.get("/parsers/{store_name}")
 async def parse_store(
     store_name: str,
     category: str,
