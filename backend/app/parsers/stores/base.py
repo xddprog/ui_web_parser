@@ -6,9 +6,11 @@ from backend.app.parsers.driver import ParserDriver
 
 
 class BaseParser(ABC):
-    def __init__(self, driver: ParserDriver, base_url: str):
-        self.driver = driver
+    @abstractmethod
+    def __init__(self, driver: ParserDriver, base_url: str, categories: dict[str, str]):
+        self.driver: ParserDriver = driver
         self.base_url = base_url
+        self.categories: dict[str, str] = categories
 
     @abstractmethod
     def get_item_price(self, item_info: Tag) -> int:

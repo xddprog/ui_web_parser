@@ -3,11 +3,16 @@ from unicodedata import normalize
 
 from app.parsers.driver import ParserDriver
 from app.parsers.stores.base import BaseParser
+from app.utils.constants import YANDEX_MARKET_CATEGORIES
 
 
 class YandexMarketParser(BaseParser):
     def __init__(self):
-        super().__init__(driver=ParserDriver(), base_url='https://market.yandex.ru')
+        super().__init__(
+            driver=ParserDriver(),
+            base_url='https://market.yandex.ru',
+            categories=YANDEX_MARKET_CATEGORIES
+        )
 
     def get_item_name(self, item_info: Tag) -> str:
         item_name = item_info.find('div', class_='_1ENFO').find(
@@ -54,7 +59,7 @@ class YandexMarketParser(BaseParser):
         }
 
     def parse(self, category: str) -> list[dict]:
-        file = self.driver.get_source_html(self.base_url + '/search?hid=' + category)
+        file = self.driver.get_source_html(self.base_url + '/search?hid=' + self.categories[category])
         soup = BeautifulSoup(file, 'lxml')
 
         cards = soup.find_all('div', class_='_2rw4E _2g7lE')

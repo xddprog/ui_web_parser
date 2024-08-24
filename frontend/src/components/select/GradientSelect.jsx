@@ -21,12 +21,13 @@ const SelectCategory = styled.select`
 `
 
 
-export default function SelectParseCategory({handleCategory}) {
+export default function GradientSelect({handler, defaultOption, options}) {
     return (
-        <SelectCategory onChange={(event) => handleCategory(event.target.value)}>
-            <option value="" disabled selected>Выберите категорию</option>
-            <option value="smartfony">Смартфоны</option>
-            <option value="noutbuki">Ноутбуки</option>
+        <SelectCategory onChange={(event) => handler(event.target.value)}>
+            <option value="" disabled selected>{defaultOption}</option>
+            {options.map(
+                (option) => (<option value={option}>{option}</option>)
+            )}
         </SelectCategory>
     )
 }

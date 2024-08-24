@@ -60,7 +60,7 @@ class MegaMarketParser(BaseParser):
         }
 
     def parse(self, category: str) -> list[dict]:
-        file = self.driver.get_source_html(self.base_url + '/catalog/' + category.replace(' ', '%20'))
+        file = self.driver.get_source_html(self.base_url + '/catalog/' + self.categories[category])
         soup = BeautifulSoup(file, 'lxml')
 
         cards = soup.find_all('div', class_='catalog-item-mobile ddl_product')

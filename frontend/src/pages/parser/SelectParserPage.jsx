@@ -25,10 +25,10 @@ export default function SelectParserPage() {
     return (
         <Container>
             <Title>Выберите сайт для парсинга</Title>
-            <SelectParserButton color='#ff7880' storeLabel='Мвидео' storeValue='mvideo'/>
-            <SelectParserButton color='#f796ff' storeLabel='Яндекс.Маркет' storeValue='yandex'/>
-            <SelectParserButton color='#ffdd9a' storeLabel='ДНС' storeValue='dns'/>
-            <SelectParserButton color='#d1ff96' storeLabel='Мегамаркет' storeValue='megamarket'/>
+            <SelectParserButton color='#ff7880' store='Мвидео'/>
+            <SelectParserButton color='#f796ff' store='Яндекс Маркет'/>
+            <SelectParserButton color='#ffdd9a' store='ДНС'/>
+            <SelectParserButton color='#d1ff96' store='Мегамаркет'/>
         </Container>
     )
 }

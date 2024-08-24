@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import SelectParseCategory from "../../components/select/SelectParseCategory.jsx";
+import GradientSelect from "../../components/select/GradientSelect.jsx";
 import {Container, Title} from "../../components/BaseComponents.jsx";
 import {useParams} from "react-router-dom";
 import GradientButton from "../../components/buttons/GradientButton.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ProductCard from "../../components/cards/ProductCard.jsx";
-import {parseStoreCategory} from "../../api/parsers.jsx";
+import {getParsingCategories, parseStoreCategory} from "../../api/parsers.jsx";
 import {GradientInput} from "../../components/inputs/GradientInput.jsx";
 import ErrorMessage from "../../components/messages/ErrorMessage.jsx";
 import {Pagination} from "../../components/pagination/Pagination.jsx";
@@ -15,10 +15,15 @@ export default function ParserPage() {
     const store = useParams().store
     const [parsedProducts, setParsedProducts] = useState([])
     const [errorMessage, setErrorMessage] = useState("");
+    const [storeCategories, setStoreCategories] = useState(null);
 
     const [category, setCategory] = useState("")
     const [maxPriceInput, setMaxPriceInput] = useState("")
     const [minPriceInput, setMinPriceInput] = useState("")
+
+    useEffect(() => {
+        getParsingCategories(store).then(res => setStoreCategories(res));
+    }, []);
 
     async function validateFields() {
         if (maxPriceInput && !/^\d+$/.test(maxPriceInput)) {
@@ -57,7 +62,11 @@ export default function ParserPage() {
             <form action={parseStore}>
                 <Container>
                     {errorMessage ? <ErrorMessage text={errorMessage} />: null}
-                    <SelectParseCategory handleCategory={setCategory}/>
+                    <GradientSelect
+                        handler={setCategory}
+                        defaultOption="Выберите категорию"
+                        options={storeCategories ? storeCategories: []}
+                    />
                     <GradientInput placeholder="Минимальная цена" setInput={setMinPriceInput}/>
                     <GradientInput placeholder="Максимальная цена" setInput={setMaxPriceInput}/>
                     <GradientButton text="Начать парсинг" onClick={parseStore}/>

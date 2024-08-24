@@ -3,13 +3,15 @@ from unicodedata import normalize
 
 from app.parsers.driver import ParserDriver
 from app.parsers.stores.base import BaseParser
+from app.utils.constants import MVIDEO_CATEGORIES
 
 
 class MVideoParser(BaseParser):
     def __init__(self):
         super().__init__(
             driver=ParserDriver(),
-            base_url='https://www.mvideo.ru/'
+            base_url='https://www.mvideo.ru/',
+            categories=MVIDEO_CATEGORIES
         )
 
     def get_item_name(self, item_info: Tag) -> str:
@@ -58,7 +60,7 @@ class MVideoParser(BaseParser):
         }
 
     def parse(self, category: str) -> list[dict]:
-        file = self.driver.get_source_html(self.base_url + category.replace(' ', '%20'), lazy_load=True)
+        file = self.driver.get_source_html(self.base_url + self.categories[category], lazy_load=True)
 
         soup = BeautifulSoup(file, 'lxml')
         cards = soup.find_all('div', class_='product-card--list ng-star-inserted')
